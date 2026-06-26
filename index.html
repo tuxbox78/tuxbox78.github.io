@@ -241,9 +241,10 @@
     .rv.d4{transition-delay:.28s}
 
     /* ─── HEADER AVATAR ──────────────────────────────────────── */
-    .logo-avatar{width:32px;height:32px;border-radius:50%;overflow:hidden;
-      flex-shrink:0;border:2px solid var(--prihl);
-      box-shadow:0 0 0 1px var(--pri);transition:box-shadow var(--ease)}
+    .logo-avatar{width:36px;height:36px;border-radius:50%;overflow:hidden;
+      flex-shrink:0;border:2px solid color-mix(in oklch,var(--pri) 40%,transparent);
+      box-shadow:0 0 0 1px color-mix(in oklch,var(--pri) 30%,transparent);
+      transition:box-shadow var(--ease);margin-left:var(--sp2)}
     .logo-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center}
     .logo-avatar .av-fallback{width:100%;height:100%;background:var(--prihl);
       display:flex;align-items:center;justify-content:center;font-size:11px;
@@ -304,6 +305,11 @@
           font-weight="800" font-size="14" fill="var(--bg)">FS</text>
       </svg>
       Frank Seidel
+      <div class="logo-avatar" aria-hidden="true">
+        <img src="portrait.jpg" alt=""
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="av-fallback" style="display:none">FS</div>
+      </div>
     </a>
 
     <button class="mob-tog" aria-label="Toggle navigation" aria-expanded="false" id="navTog">
