@@ -239,6 +239,54 @@
     .rv.d2{transition-delay:.14s}
     .rv.d3{transition-delay:.21s}
     .rv.d4{transition-delay:.28s}
+
+    /* ─── HEADER AVATAR ──────────────────────────────────────── */
+    .logo-avatar{width:32px;height:32px;border-radius:50%;overflow:hidden;
+      flex-shrink:0;border:2px solid var(--prihl);
+      box-shadow:0 0 0 1px var(--pri);transition:box-shadow var(--ease)}
+    .logo-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center}
+    .logo-avatar .av-fallback{width:100%;height:100%;background:var(--prihl);
+      display:flex;align-items:center;justify-content:center;font-size:11px;
+      font-weight:800;color:var(--pri);font-family:var(--font-display)}
+    .logo:hover .logo-avatar{box-shadow:0 0 0 2px var(--pri)}
+
+    /* ─── HERO SVG NAMEPLATE ─────────────────────────────────── */
+    .hero-nameplate{flex-shrink:0;width:clamp(220px,28vw,320px);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:var(--sp4)}
+    .nameplate-svg-wrap{width:100%;aspect-ratio:4/3;
+      background:var(--surf);border:1px solid oklch(from var(--tx) l c h / .08);
+      border-radius:var(--r-xl);box-shadow:var(--sh-lg);
+      overflow:hidden;display:flex;align-items:center;justify-content:center;padding:var(--sp6)}
+    /* Pulse line animation */
+    @keyframes pulse-draw {
+      0%{stroke-dashoffset:400}
+      60%{stroke-dashoffset:0}
+      100%{stroke-dashoffset:0}
+    }
+    @keyframes cursor-blink {
+      0%,100%{opacity:1} 50%{opacity:0}
+    }
+    @keyframes name-fade-in {
+      0%{opacity:0;transform:translateY(6px)}
+      100%{opacity:1;transform:translateY(0)}
+    }
+    @keyframes tagline-fade-in {
+      0%{opacity:0}
+      100%{opacity:1}
+    }
+    .np-pulse{stroke-dasharray:400;stroke-dashoffset:400;
+      animation:pulse-draw 2.2s cubic-bezier(.4,0,.2,1) 0.3s forwards}
+    .np-name{opacity:0;animation:name-fade-in .6s ease 1.8s forwards}
+    .np-tagline{opacity:0;animation:tagline-fade-in .5s ease 2.4s forwards}
+    .np-cursor{animation:cursor-blink 1s step-end 2.4s infinite}
+    @media(prefers-reduced-motion:reduce){
+      .np-pulse{stroke-dashoffset:0;animation:none}
+      .np-name,.np-tagline{opacity:1;animation:none}
+    }
+    @media(max-width:600px){
+      .hero-nameplate{width:100%;max-width:280px;margin:0 auto}
+    }
   </style>
 </head>
 <body>
@@ -308,17 +356,51 @@
             <a href="#projects" class="btn btn-ghost">View projects</a>
           </div>
         </div>
-        <!-- NeuesPassbild.jpg muss im selben Ordner wie index.html liegen -->
-        <div class="portrait-wrap">
-          <img src="portrait.jpg"
-               alt="Frank Seidel – iOS and Systems Developer"
-               width="260" height="260"
-               loading="eager"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="portrait-fallback" style="display:none" aria-hidden="true">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
+        <!-- Animated SVG nameplate -->
+        <div class="hero-nameplate">
+          <div class="nameplate-svg-wrap">
+            <svg viewBox="0 0 280 210" width="280" height="210"
+                 xmlns="http://www.w3.org/2000/svg" aria-label="Frank Seidel – iOS and Systems Developer" role="img">
+
+              <!-- EKG/Pulse line that draws itself -->
+              <polyline class="np-pulse"
+                points="0,105 30,105 42,105 50,55 60,155 70,80 80,130 90,105 120,105 132,105 140,72 148,138 156,105 180,105 200,105 280,105"
+                fill="none"
+                stroke="var(--pri)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                opacity="0.6"/>
+
+              <!-- Name: Frank Seidel -->
+              <g class="np-name">
+                <text
+                  x="140" y="148"
+                  text-anchor="middle"
+                  font-family="Cabinet Grotesk, Helvetica Neue, sans-serif"
+                  font-weight="800"
+                  font-size="28"
+                  letter-spacing="-0.5"
+                  fill="var(--tx)">Frank Seidel</text>
+              </g>
+
+              <!-- Tagline with blinking cursor -->
+              <g class="np-tagline">
+                <text
+                  x="140" y="172"
+                  text-anchor="middle"
+                  font-family="Satoshi, monospace"
+                  font-weight="500"
+                  font-size="12"
+                  letter-spacing="0.5"
+                  fill="var(--pri)"
+                  opacity="0.85">iOS &amp; Systems Developer</text>
+                <!-- blinking cursor -->
+                <rect class="np-cursor"
+                  x="218" y="161" width="2" height="13"
+                  rx="1" fill="var(--pri)"/>
+              </g>
+
             </svg>
           </div>
         </div>
