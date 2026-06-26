@@ -323,6 +323,7 @@
         <li><a href="#background">Background</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#impressum">Impressum</a></li>
+        <li><a href="#" id="blog-nav-link">Blog</a></li>
       </ul>
     </nav>
 
@@ -499,218 +500,21 @@
   </section>
 
   <hr class="div" />
-
-  <!-- PROJECTS -->
-  <section class="section" id="projects" aria-labelledby="proj-h">
-    <div class="wrap">
-      <p class="sec-lbl rv">Portfolio</p>
-      <h2 class="sec-h rv d1" id="proj-h">Projects</h2>
-      <p class="sec-intro rv d2">Selected work — focused on privacy, utility, and clean engineering.</p>
-      <div class="proj-grid">
-
-        <!-- HealthBrowser -->
-        <div class="proj-card rv d1">
-          <div class="proj-hdr">
-            <div class="proj-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-              </svg>
-            </div>
-            <span class="proj-badge">App Store</span>
-          </div>
-          <h3>HealthBrowser</h3>
-          <p>A native, privacy-first iOS app for exploring and exporting Apple HealthKit data. Browse 100+ data types across 14 categories, filter by date range, export clean CSV files — fully on-device, zero cloud, zero network requests. One-time purchase, no subscription.</p>
-          <div class="tags">
-            <span class="tag">Swift 6</span><span class="tag">HealthKit</span>
-            <span class="tag">SwiftUI</span><span class="tag">CSV Export</span><span class="tag">MVVM</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" aria-label="HealthBrowser on the App Store">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-              App Store
-            </a>
-            <a href="https://github.com/tuxbox78" target="_blank" rel="noopener noreferrer">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-              </svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-
-        <!-- iosNetatmo -->
-        <div class="proj-card rv d2">
-          <div class="proj-hdr">
-            <div class="proj-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </div>
-            <span class="proj-badge">Open Source</span>
-          </div>
-          <h3>iosNetatmo</h3>
-          <p>Open source iOS client for Netatmo weather stations. Clean Swift architecture, local data access, no unnecessary cloud dependency.</p>
-          <div class="tags">
-            <span class="tag">Swift</span><span class="tag">iOS</span>
-            <span class="tag">Netatmo API</span><span class="tag">Open Source</span>
-          </div>
-          <div class="proj-links">
-            <a href="https://github.com/tuxbox78/iosNetatmo" target="_blank" rel="noopener noreferrer">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-              </svg>
-              View on GitHub
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  <div id="projects-placeholder" style="min-height:200px"></div>
 
   <hr class="div" />
-
-  <!-- BACKGROUND / TIMELINE -->
-  <section class="section" id="background" aria-labelledby="bg-h">
-    <div class="wrap">
-      <p class="sec-lbl rv">Background</p>
-      <h2 class="sec-h rv d1" id="bg-h">Experience</h2>
-      <p class="sec-intro rv d2">From kernel-level C to Swift — a career built on understanding systems from the ground up.</p>
-      <div class="timeline rv d3">
-
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div>
-            <div class="tl-period">2025 – Present</div>
-            <div class="tl-role">Independent iOS Developer</div>
-            <div class="tl-org">Freelance · Ansbach, Bavaria</div>
-            <p class="tl-desc">Developing and publishing native iOS apps. Creator of HealthBrowser. Open source contributor on GitHub (tuxbox78). Available for custom iOS and HealthKit development projects.</p>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div>
-            <div class="tl-period">2012 – 2025</div>
-            <div class="tl-role">Software Developer</div>
-            <div class="tl-org">Bavarian State Police · Bavaria</div>
-            <p class="tl-desc">Developed the internal search engine for law enforcement operations. Civil service software engineering in a security-critical environment requiring highest reliability standards.</p>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot tl-dot--faint"></div>
-          <div>
-            <div class="tl-period">~2008 – 2012</div>
-            <div class="tl-role">Systems Engineer</div>
-            <div class="tl-org">Areva / Framatome · Erlangen</div>
-            <p class="tl-desc">Real-time turbine monitoring systems. Safety-critical software engineering for industrial nuclear infrastructure.</p>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot tl-dot--faint"></div>
-          <div>
-            <div class="tl-period">~2000 – 2008</div>
-            <div class="tl-role">Linux Kernel Developer</div>
-            <div class="tl-org">SuSE Linux / Novell · Worldwide</div>
-            <p class="tl-desc">Kernel-level development for one of the leading Linux distributions. Extensive international deployments and conference engagements worldwide.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  <div id="background-placeholder" style="min-height:200px"></div>
 
   <hr class="div" />
-
-  <!-- CONTACT / HIRE ME -->
-  <section class="section section--sm" id="contact" aria-labelledby="hire-h">
-    <div class="wrap--narrow">
-      <div class="hire-box rv">
-        <p class="sec-lbl" style="display:block;text-align:center;margin-bottom:var(--sp3)">Freelance</p>
-        <h2 id="hire-h">Let's work together</h2>
-        <p>Looking for an experienced iOS developer for a HealthKit app, a systems integration project, or something in between? I'm available for freelance work — remote, flexible, and focused on quality. Drop me a line.</p>
-        <div class="hire-acts">
-          <a href="mailto:kontakt@f-seidel.de" class="btn btn-pri">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,12 2,6"/>
-            </svg>
-            kontakt@f-seidel.de
-          </a>
-          <a href="https://github.com/tuxbox78" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub Profile</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div id="contact-placeholder" style="min-height:100px"></div>
 
   <hr class="div" />
-
-  <!-- PRIVACY POLICY -->
-  <section class="section privacy-bg" id="privacy" aria-labelledby="pp-h">
-    <div class="wrap">
-      <p class="sec-lbl rv">Legal</p>
-      <h2 class="sec-h rv d1" id="pp-h">Privacy Policy</h2>
-      <p class="sec-intro rv d2">Privacy policy for the <strong>HealthBrowser</strong> iOS application.</p>
-      <div class="privacy-box rv d3">
-        <h3>HealthBrowser – Privacy Policy</h3>
-        <p><strong>HealthBrowser</strong> accesses Apple HealthKit data solely to display and export it directly on your device. No health data is ever transmitted to any server, third party, or cloud service of any kind.</p>
-        <p>All data processing happens entirely on-device. HealthBrowser makes zero network requests. There is no analytics SDK, no crash reporter, no advertising framework, and no account system included in the app.</p>
-        <p>The app requires only the HealthKit read permission that you explicitly grant via the standard iOS permission dialog. You can revoke this permission at any time in iOS Settings → Privacy &amp; Security → Health.</p>
-        <p>No data is collected, stored externally, or shared — ever.</p>
-        <p style="color:var(--txf);margin-top:var(--sp5);font-size:var(--text-xs)">
-          Last updated: June 2026 · Frank Seidel · <a href="mailto:kontakt@f-seidel.de">kontakt@f-seidel.de</a>
-        </p>
-      </div>
-    </div>
-  </section>
+  <div id="privacy-placeholder" style="min-height:100px"></div>
 
   <hr class="div" />
-
-  <!-- IMPRESSUM -->
-  <section class="section section--sm" id="impressum" aria-labelledby="imp-h">
-    <div class="wrap">
-      <p class="sec-lbl rv">Legal</p>
-      <h2 class="sec-h rv d1" id="imp-h">Impressum</h2>
-      <p class="sec-intro rv d2">Angaben gemäß § 5 TMG</p>
-      <div class="imp-grid rv d3">
-
-        <div class="imp-block">
-          <h4>Verantwortlich</h4>
-          <address>
-            Frank Seidel<br>
-            Jüdtstraße 5f<br>
-            91522 Ansbach<br>
-            Deutschland
-          </address>
-        </div>
-
-        <div class="imp-block">
-          <h4>Kontakt</h4>
-          <p>E-Mail: <a href="mailto:kontakt@f-seidel.de">kontakt@f-seidel.de</a></p>
-        </div>
-
-        <div class="imp-block">
-          <h4>Umsatzsteuer</h4>
-          <p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung).</p>
-        </div>
-
-        <div class="imp-block">
-          <h4>Hinweis</h4>
-          <p>Diese Website dient der Selbstdarstellung als freiberuflicher Softwareentwickler sowie als Informationsseite für die iOS-App HealthBrowser.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
+  <div id="impressum-placeholder" style="min-height:100px"></div>
 
 </main>
-
 <!-- ═══════════════════════ FOOTER ══════════════════════════════ -->
 <footer class="ftr" role="contentinfo">
   <div class="wrap">
@@ -751,12 +555,51 @@
 // Scroll reveal
 (function(){
   if(!window.IntersectionObserver){document.querySelectorAll('.rv').forEach(function(e){e.classList.add('vis');});return;}
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+  window._rvObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');window._rvObserver&&window._rvObserver.unobserve(e.target);}});
   },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rv').forEach(function(e){obs.observe(e);});
 })();
 </script>
 
+
+<!-- ═══════════════════════ INCLUDES LOADER ══════════════════════ -->
+<script>
+(function() {
+  var includes = [
+    { file: 'includes/projects.html',    placeholder: 'projects-placeholder' },
+    { file: 'includes/background.html',  placeholder: 'background-placeholder' },
+    { file: 'includes/contact.html',     placeholder: 'contact-placeholder' },
+    { file: 'includes/privacy.html',     placeholder: 'privacy-placeholder' },
+    { file: 'includes/impressum.html',   placeholder: 'impressum-placeholder' },
+  ];
+
+  includes.forEach(function(inc) {
+    var el = document.getElementById(inc.placeholder);
+    if (!el) return;
+    fetch(inc.file)
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status + ' loading ' + inc.file);
+        return r.text();
+      })
+      .then(function(html) {
+        // Insert the section before the placeholder div
+        el.insertAdjacentHTML('beforebegin', html);
+        el.remove();
+        // Re-observe newly added .rv elements for scroll reveal
+        if (window._rvObserver) {
+          document.querySelectorAll('.rv:not(.vis)').forEach(function(e) {
+            window._rvObserver.observe(e);
+          });
+        }
+      })
+      .catch(function(err) {
+        console.warn('Could not load include:', inc.file, err);
+        // Graceful fallback: remove placeholder silently
+        el.remove();
+      });
+  });
+})();
+</script>
 </body>
 </html>
