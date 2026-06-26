@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frank Seidel – iOS &amp; Systems Developer</title>
+  <meta name="description" content="Frank Seidel – Independent iOS and Linux/Systems developer. Creator of HealthBrowser. Available for freelance projects." />
+  <meta property="og:title" content="Frank Seidel – iOS &amp; Systems Developer" />
+  <meta property="og:description" content="Independent iOS and Linux/Systems developer. Creator of HealthBrowser. Available for freelance." />
+  <meta property="og:image" content="https://tuxbox78.github.io/portrait.jpg" />
+  <meta property="og:url" content="https://tuxbox78.github.io" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --font-display:'Cabinet Grotesk','Helvetica Neue',sans-serif;
+      --font-body:'Satoshi','Inter',sans-serif;
+      --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
+      --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
+      --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
+      --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+      --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+      --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+      --sp1:.25rem;--sp2:.5rem;--sp3:.75rem;--sp4:1rem;--sp5:1.25rem;--sp6:1.5rem;
+      --sp8:2rem;--sp10:2.5rem;--sp12:3rem;--sp16:4rem;--sp20:5rem;--sp24:6rem;
+      --r-sm:.375rem;--r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-full:9999px;
+      --ease:180ms cubic-bezier(.16,1,.3,1);
+      --cw-narrow:640px;--cw:960px;--cw-wide:1200px;
+    }
+    :root,[data-theme="light"]{
+      --bg:#f7f6f2;--surf:#f9f8f5;--surf2:#fbfbf9;--surfoff:#f0ede8;
+      --div:#dcd9d5;--bdr:#d4d1ca;
+      --tx:#28251d;--txm:#7a7974;--txf:#b5b4af;--txi:#f9f8f4;
+      --pri:#01696f;--prih:#0c4e54;--prihl:#cee4e2;
+      --sh-sm:0 1px 2px oklch(.2 .01 80/.06);
+      --sh-md:0 4px 12px oklch(.2 .01 80/.09);
+      --sh-lg:0 12px 32px oklch(.2 .01 80/.13);
+    }
+    [data-theme="dark"]{
+      --bg:#111110;--surf:#1a1917;--surf2:#201f1d;--surfoff:#252320;
+      --div:#2e2d2b;--bdr:#383735;
+      --tx:#d4d3d0;--txm:#7a7876;--txf:#4f4e4c;--txi:#2b2a28;
+      --pri:#4f98a3;--prih:#6db8c4;--prihl:#1a3336;
+      --sh-sm:0 1px 2px oklch(0 0 0/.25);
+      --sh-md:0 4px 12px oklch(0 0 0/.35);
+      --sh-lg:0 12px 32px oklch(0 0 0/.5);
+    }
+    @media(prefers-color-scheme:light){:root:not([data-theme]){
+      --bg:#f7f6f2;--surf:#f9f8f5;--surf2:#fbfbf9;--surfoff:#f0ede8;
+      --div:#dcd9d5;--bdr:#d4d1ca;--tx:#28251d;--txm:#7a7974;--txf:#b5b4af;--txi:#f9f8f4;
+      --pri:#01696f;--prih:#0c4e54;--prihl:#cee4e2;
+      --sh-sm:0 1px 2px oklch(.2 .01 80/.06);--sh-md:0 4px 12px oklch(.2 .01 80/.09);--sh-lg:0 12px 32px oklch(.2 .01 80/.13);
+    }}
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:var(--sp20)}
+    body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);color:var(--tx);background:var(--bg);line-height:1.65;transition:background var(--ease),color var(--ease)}
+    img,svg{display:block;max-width:100%}
+    ul[role=list]{list-style:none}
+    input,button,textarea,select{font:inherit;color:inherit}
+    h1,h2,h3,h4{text-wrap:balance;line-height:1.15;font-family:var(--font-display)}
+    p,li{text-wrap:pretty}
+    button{cursor:pointer;background:none;border:none}
+    a{color:var(--pri);text-decoration:none;transition:color var(--ease)}
+    a:hover{color:var(--prih)}
+    ::selection{background:color-mix(in oklch,var(--pri) 22%,transparent)}
+    :focus-visible{outline:2px solid var(--pri);outline-offset:3px;border-radius:var(--r-sm)}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+    /* ─── LAYOUT ─────────────────────────────────────────────── */
+    .wrap{max-width:var(--cw);margin-inline:auto;padding-inline:clamp(var(--sp4),5vw,var(--sp12))}
+    .wrap--narrow{max-width:var(--cw-narrow);margin-inline:auto;padding-inline:clamp(var(--sp4),5vw,var(--sp12))}
+    .section{padding-block:clamp(var(--sp12),8vw,var(--sp24))}
+    .section--sm{padding-block:clamp(var(--sp8),4vw,var(--sp16))}
+    hr.div{border:none;border-top:1px solid var(--div)}
+    .skip{position:absolute;top:-100%;left:var(--sp4);background:var(--pri);color:#fff;
+      padding:var(--sp2) var(--sp4);border-radius:var(--r-md);font-size:var(--text-sm);font-weight:500;z-index:1000;transition:top var(--ease)}
+    .skip:focus{top:var(--sp4)}
+
+    /* ─── HEADER ─────────────────────────────────────────────── */
+    .hdr{position:sticky;top:0;z-index:100;
+      background:color-mix(in oklch,var(--bg) 82%,transparent);
+      backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--div)}
+    .hdr .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:var(--sp4);gap:var(--sp4)}
+    .logo{display:flex;align-items:center;gap:var(--sp3);font-family:var(--font-display);
+      font-size:var(--text-lg);font-weight:800;color:var(--tx);letter-spacing:-.02em}
+    .logo:hover{color:var(--tx)}
+    .logo svg{color:var(--pri);flex-shrink:0}
+    .nav{display:flex;align-items:center;gap:clamp(var(--sp4),2vw,var(--sp8))}
+    .nav a{font-size:var(--text-sm);font-weight:500;color:var(--txm);transition:color var(--ease)}
+    .nav a:hover{color:var(--tx)}
+    .hdr-acts{display:flex;align-items:center;gap:var(--sp3)}
+    .thm-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;
+      border-radius:var(--r-full);color:var(--txm);transition:color var(--ease),background var(--ease)}
+    .thm-btn:hover{color:var(--tx);background:var(--surfoff)}
+    .btn{display:inline-flex;align-items:center;gap:var(--sp2);padding:var(--sp2) var(--sp5);
+      border-radius:var(--r-full);font-size:var(--text-sm);font-weight:500;
+      transition:background var(--ease),color var(--ease),box-shadow var(--ease)}
+    .btn-pri{background:var(--pri);color:#fff;box-shadow:var(--sh-sm)}
+    .btn-pri:hover{background:var(--prih);color:#fff;box-shadow:var(--sh-md)}
+    .btn-ghost{background:var(--surfoff);color:var(--tx)}
+    .btn-ghost:hover{background:var(--div)}
+    .mob-tog{display:none;flex-direction:column;gap:5px;width:24px;
+      padding:var(--sp2);color:var(--txm);background:none;border:none;cursor:pointer}
+    .mob-tog span{display:block;height:2px;width:100%;background:currentColor;
+      border-radius:var(--r-full);transition:transform var(--ease),opacity var(--ease)}
+    @media(max-width:680px){
+      .mob-tog{display:flex}
+      .nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;
+        align-items:flex-start;gap:0;background:var(--surf);border-bottom:1px solid var(--div);
+        padding:var(--sp4) clamp(var(--sp4),5vw,var(--sp12))}
+      .nav.open{display:flex}
+      .nav a{display:block;padding-block:var(--sp3);font-size:var(--text-base);width:100%}
+      .hdr-hire{display:none}
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero{padding-block:clamp(var(--sp16),12vw,var(--sp24)) clamp(var(--sp12),8vw,var(--sp20))}
+    .hero-inner{display:grid;grid-template-columns:1fr auto;gap:clamp(var(--sp8),6vw,var(--sp16));align-items:center}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:var(--sp2);
+      font-size:var(--text-xs);font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--pri);background:var(--prihl);padding:var(--sp1) var(--sp3);
+      border-radius:var(--r-full);margin-bottom:var(--sp6)}
+    .hero-eyebrow::before{content:'';display:inline-block;width:6px;height:6px;background:var(--pri);border-radius:50%}
+    .hero h1{font-size:var(--text-2xl);font-weight:800;letter-spacing:-.03em;
+      color:var(--tx);margin-bottom:var(--sp5);max-width:13ch}
+    .hero h1 .acc{color:var(--pri)}
+    .hero-sub{font-size:var(--text-lg);color:var(--txm);max-width:48ch;line-height:1.55;margin-bottom:var(--sp8)}
+    .hero-acts{display:flex;flex-wrap:wrap;gap:var(--sp3);align-items:center}
+    .hero-acts .btn{font-size:var(--text-base);padding:var(--sp3) var(--sp6)}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:clamp(var(--sp6),4vw,var(--sp10));margin-top:var(--sp10);
+      padding-top:var(--sp8);border-top:1px solid var(--div)}
+    .hero-meta-item{display:flex;flex-direction:column;gap:var(--sp1)}
+    .hero-meta-item .lbl{font-size:var(--text-xs);letter-spacing:.06em;text-transform:uppercase;color:var(--txf);font-weight:500}
+    .hero-meta-item .val{font-size:var(--text-sm);color:var(--txm);font-weight:500}
+    /* Portrait */
+    .portrait-wrap{flex-shrink:0;width:clamp(160px,20vw,260px);height:clamp(160px,20vw,260px);
+      border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-lg);
+      border:1px solid oklch(from var(--tx) l c h / .08)}
+    .portrait-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center}
+    /* Portrait fallback if image missing */
+    .portrait-wrap .portrait-fallback{width:100%;height:100%;background:var(--prihl);
+      display:flex;align-items:center;justify-content:center;color:var(--pri)}
+    @media(max-width:600px){
+      .hero-inner{grid-template-columns:1fr;gap:var(--sp8)}
+      .portrait-wrap{width:120px;height:120px;border-radius:50%;margin:0 auto}
+      .hero h1{max-width:none}
+    }
+
+    /* ─── SECTION HEADERS ────────────────────────────────────── */
+    .sec-lbl{font-size:var(--text-xs);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--pri);margin-bottom:var(--sp3)}
+    .sec-h{font-size:var(--text-xl);font-weight:800;letter-spacing:-.025em;color:var(--tx);margin-bottom:var(--sp4)}
+    .sec-intro{font-size:var(--text-base);color:var(--txm);max-width:60ch;margin-bottom:var(--sp10);line-height:1.7}
+
+    /* ─── SKILLS GRID ────────────────────────────────────────── */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:var(--sp4)}
+    .skill-card{background:var(--surf);border:1px solid oklch(from var(--tx) l c h / .08);
+      border-radius:var(--r-xl);padding:var(--sp6);transition:box-shadow var(--ease),border-color var(--ease)}
+    .skill-card:hover{box-shadow:var(--sh-md);border-color:oklch(from var(--tx) l c h / .15)}
+    .skill-icon{width:36px;height:36px;margin-bottom:var(--sp4);color:var(--pri)}
+    .skill-card h3{font-size:var(--text-base);font-weight:700;color:var(--tx);margin-bottom:var(--sp2)}
+    .skill-card p{font-size:var(--text-sm);color:var(--txm);line-height:1.6;max-width:none}
+    .tags{display:flex;flex-wrap:wrap;gap:var(--sp2);margin-top:var(--sp4)}
+    .tag{font-size:var(--text-xs);font-weight:500;padding:var(--sp1) var(--sp3);
+      border-radius:var(--r-full);background:var(--surfoff);color:var(--txm)}
+
+    /* ─── PROJECT CARDS ──────────────────────────────────────── */
+    .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:var(--sp6)}
+    .proj-card{background:var(--surf);border:1px solid oklch(from var(--tx) l c h / .08);
+      border-radius:var(--r-xl);padding:var(--sp8);display:flex;flex-direction:column;gap:var(--sp4);
+      transition:box-shadow var(--ease),border-color var(--ease)}
+    .proj-card:hover{box-shadow:var(--sh-lg);border-color:oklch(from var(--tx) l c h / .15)}
+    .proj-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--sp4)}
+    .proj-icon{width:48px;height:48px;flex-shrink:0;border-radius:var(--r-lg);
+      background:var(--prihl);display:flex;align-items:center;justify-content:center;color:var(--pri)}
+    .proj-badge{font-size:var(--text-xs);font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+      padding:var(--sp1) var(--sp3);border-radius:var(--r-full);background:var(--prihl);color:var(--pri)}
+    .proj-card h3{font-size:var(--text-lg);font-weight:800;letter-spacing:-.02em;color:var(--tx)}
+    .proj-card p{font-size:var(--text-sm);color:var(--txm);line-height:1.65;max-width:none}
+    .proj-links{display:flex;gap:var(--sp4);flex-wrap:wrap;margin-top:auto;padding-top:var(--sp2)}
+    .proj-links a{font-size:var(--text-sm);font-weight:500;display:inline-flex;align-items:center;
+      gap:var(--sp2);color:var(--txm);transition:color var(--ease)}
+    .proj-links a:hover{color:var(--pri)}
+
+    /* ─── TIMELINE ───────────────────────────────────────────── */
+    .timeline{position:relative;display:flex;flex-direction:column}
+    .timeline::before{content:'';position:absolute;left:15px;top:14px;bottom:14px;
+      width:1px;background:var(--div)}
+    .tl-item{display:grid;grid-template-columns:32px 1fr;gap:var(--sp4);padding:var(--sp4) 0}
+    .tl-dot{width:8px;height:8px;border-radius:50%;background:var(--pri);
+      margin-top:7px;margin-left:12px;flex-shrink:0;position:relative;z-index:1}
+    .tl-dot--faint{background:var(--txf)}
+    .tl-period{font-size:var(--text-xs);font-weight:500;letter-spacing:.04em;
+      color:var(--txf);text-transform:uppercase;margin-bottom:var(--sp1)}
+    .tl-role{font-size:var(--text-base);font-weight:700;color:var(--tx);margin-bottom:var(--sp1)}
+    .tl-org{font-size:var(--text-sm);color:var(--pri);font-weight:500}
+    .tl-desc{font-size:var(--text-sm);color:var(--txm);margin-top:var(--sp2);line-height:1.6;max-width:55ch}
+
+    /* ─── HIRE BOX ───────────────────────────────────────────── */
+    .hire-box{background:var(--surf);border:1px solid oklch(from var(--tx) l c h / .08);
+      border-radius:var(--r-xl);padding:clamp(var(--sp8),6vw,var(--sp16));text-align:center}
+    .hire-box h2{font-size:var(--text-xl);font-weight:800;letter-spacing:-.025em;color:var(--tx);margin-bottom:var(--sp4)}
+    .hire-box p{font-size:var(--text-base);color:var(--txm);max-width:52ch;margin-inline:auto;margin-bottom:var(--sp8);line-height:1.7}
+    .hire-acts{display:flex;flex-wrap:wrap;gap:var(--sp3);justify-content:center}
+    .hire-acts .btn{font-size:var(--text-base);padding:var(--sp3) var(--sp8)}
+
+    /* ─── PRIVACY ────────────────────────────────────────────── */
+    .privacy-bg{background:var(--surfoff)}
+    .privacy-box{background:var(--surf);border:1px solid oklch(from var(--tx) l c h / .08);
+      border-radius:var(--r-xl);padding:var(--sp8) var(--sp10)}
+    .privacy-box h3{font-size:var(--text-lg);font-weight:700;color:var(--tx);margin-bottom:var(--sp5)}
+    .privacy-box p{font-size:var(--text-sm);color:var(--txm);line-height:1.75;max-width:66ch;margin-bottom:var(--sp3)}
+    .privacy-box p:last-child{margin-bottom:0}
+    @media(max-width:600px){.privacy-box{padding:var(--sp6)}}
+
+    /* ─── IMPRESSUM ──────────────────────────────────────────── */
+    .imp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:var(--sp6)}
+    .imp-block h4{font-size:var(--text-sm);font-weight:700;color:var(--tx);
+      margin-bottom:var(--sp3);text-transform:uppercase;letter-spacing:.06em}
+    .imp-block p,.imp-block address{font-size:var(--text-sm);color:var(--txm);font-style:normal;line-height:1.8;max-width:none}
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .ftr{background:var(--surf);border-top:1px solid var(--div);padding-block:var(--sp8)}
+    .ftr-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp4)}
+    .ftr-copy{font-size:var(--text-xs);color:var(--txf)}
+    .ftr-links{display:flex;gap:var(--sp6);list-style:none}
+    .ftr-links a{font-size:var(--text-xs);color:var(--txf);transition:color var(--ease)}
+    .ftr-links a:hover{color:var(--txm)}
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────── */
+    .rv{opacity:0;transform:translateY(16px);
+      transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
+    .rv.vis{opacity:1;transform:none}
+    .rv.d1{transition-delay:.07s}
+    .rv.d2{transition-delay:.14s}
+    .rv.d3{transition-delay:.21s}
+    .rv.d4{transition-delay:.28s}
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- ═══════════════════════ HEADER ═══════════════════════════════ -->
+<header class="hdr" role="banner">
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Frank Seidel – Home">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <rect width="30" height="30" rx="7" fill="currentColor"/>
+        <text x="15" y="21" text-anchor="middle"
+          font-family="Cabinet Grotesk,Helvetica Neue,sans-serif"
+          font-weight="800" font-size="14" fill="var(--bg)">FS</text>
+      </svg>
+      Frank Seidel
+    </a>
+
+    <button class="mob-tog" aria-label="Toggle navigation" aria-expanded="false" id="navTog">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav aria-label="Main navigation">
+      <ul class="nav" id="navList" role="list">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#background">Background</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#impressum">Impressum</a></li>
+      </ul>
+    </nav>
+
+    <div class="hdr-acts">
+      <button class="thm-btn" data-thm aria-label="Toggle theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <a href="mailto:kontakt@f-seidel.de" class="btn btn-pri hdr-hire">Hire me</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════ MAIN ════════════════════════════════ -->
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero section" aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-eyebrow">Available for freelance projects</div>
+          <h1 id="hero-h">iOS &amp; Systems<br><span class="acc">Developer</span></h1>
+          <p class="hero-sub">
+            Native iOS apps, open source tools, and robust systems software.
+            Based in Ansbach, Germany — working remotely worldwide.
+          </p>
+          <div class="hero-acts">
+            <a href="mailto:kontakt@f-seidel.de" class="btn btn-pri">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,12 2,6"/>
+              </svg>
+              Get in touch
+            </a>
+            <a href="#projects" class="btn btn-ghost">View projects</a>
+          </div>
+        </div>
+        <!-- NeuesPassbild.jpg muss im selben Ordner wie index.html liegen -->
+        <div class="portrait-wrap">
+          <img src="portrait.jpg"
+               alt="Frank Seidel – iOS and Systems Developer"
+               width="260" height="260"
+               loading="eager"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="portrait-fallback" style="display:none" aria-hidden="true">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="lbl">Location</span>
+          <span class="val">Ansbach, Bavaria · Remote</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="lbl">Focus</span>
+          <span class="val">iOS · Swift · Linux · Open Source</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="lbl">Experience</span>
+          <span class="val">25+ years in software &amp; systems</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="lbl">GitHub</span>
+          <span class="val"><a href="https://github.com/tuxbox78" target="_blank" rel="noopener noreferrer">tuxbox78</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- SKILLS -->
+  <section class="section" id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <p class="sec-lbl rv">Expertise</p>
+      <h2 class="sec-h rv d1" id="skills-h">What I do</h2>
+      <p class="sec-intro rv d2">Two decades of hands-on work across iOS development, Linux kernel engineering,
+      real-time systems, and enterprise software — now focused on lean, privacy-first iOS apps.</p>
+      <div class="skills-grid">
+
+        <div class="skill-card rv d1">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2.5"/>
+          </svg>
+          <h3>iOS Development</h3>
+          <p>Native iPhone apps in Swift 6 using SwiftUI, HealthKit, and clean MVVM architecture. From idea to App Store.</p>
+          <div class="tags">
+            <span class="tag">Swift 6</span><span class="tag">SwiftUI</span>
+            <span class="tag">HealthKit</span><span class="tag">Xcode 26</span>
+          </div>
+        </div>
+
+        <div class="skill-card rv d2">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          <h3>Linux &amp; Systems</h3>
+          <p>Linux kernel development (SuSE/Novell), real-time systems engineering, and embedded software for industrial environments.</p>
+          <div class="tags">
+            <span class="tag">Linux Kernel</span><span class="tag">C / C++</span>
+            <span class="tag">Real-Time</span><span class="tag">Embedded</span>
+          </div>
+        </div>
+
+        <div class="skill-card rv d3">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <h3>Safety-Critical Systems</h3>
+          <p>Turbine monitoring (Areva/Framatome) and enterprise search engine development for the Bavarian State Police.</p>
+          <div class="tags">
+            <span class="tag">Real-Time</span><span class="tag">Safety-Critical</span><span class="tag">Enterprise</span>
+          </div>
+        </div>
+
+        <div class="skill-card rv d4">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <h3>Open Source</h3>
+          <p>Active GitHub contributor. Clean, well-documented Swift code — built for longevity and collaboration.</p>
+          <div class="tags">
+            <span class="tag">GitHub</span><span class="tag">Git</span><span class="tag">Documentation</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects" aria-labelledby="proj-h">
+    <div class="wrap">
+      <p class="sec-lbl rv">Portfolio</p>
+      <h2 class="sec-h rv d1" id="proj-h">Projects</h2>
+      <p class="sec-intro rv d2">Selected work — focused on privacy, utility, and clean engineering.</p>
+      <div class="proj-grid">
+
+        <!-- HealthBrowser -->
+        <div class="proj-card rv d1">
+          <div class="proj-hdr">
+            <div class="proj-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <span class="proj-badge">App Store</span>
+          </div>
+          <h3>HealthBrowser</h3>
+          <p>A native, privacy-first iOS app for exploring and exporting Apple HealthKit data. Browse 100+ data types across 14 categories, filter by date range, export clean CSV files — fully on-device, zero cloud, zero network requests. One-time purchase, no subscription.</p>
+          <div class="tags">
+            <span class="tag">Swift 6</span><span class="tag">HealthKit</span>
+            <span class="tag">SwiftUI</span><span class="tag">CSV Export</span><span class="tag">MVVM</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" aria-label="HealthBrowser on the App Store">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              App Store
+            </a>
+            <a href="https://github.com/tuxbox78" target="_blank" rel="noopener noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- iosNetatmo -->
+        <div class="proj-card rv d2">
+          <div class="proj-hdr">
+            <div class="proj-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <span class="proj-badge">Open Source</span>
+          </div>
+          <h3>iosNetatmo</h3>
+          <p>Open source iOS client for Netatmo weather stations. Clean Swift architecture, local data access, no unnecessary cloud dependency.</p>
+          <div class="tags">
+            <span class="tag">Swift</span><span class="tag">iOS</span>
+            <span class="tag">Netatmo API</span><span class="tag">Open Source</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/tuxbox78/iosNetatmo" target="_blank" rel="noopener noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- BACKGROUND / TIMELINE -->
+  <section class="section" id="background" aria-labelledby="bg-h">
+    <div class="wrap">
+      <p class="sec-lbl rv">Background</p>
+      <h2 class="sec-h rv d1" id="bg-h">Experience</h2>
+      <p class="sec-intro rv d2">From kernel-level C to Swift — a career built on understanding systems from the ground up.</p>
+      <div class="timeline rv d3">
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-period">2025 – Present</div>
+            <div class="tl-role">Independent iOS Developer</div>
+            <div class="tl-org">Freelance · Ansbach, Bavaria</div>
+            <p class="tl-desc">Developing and publishing native iOS apps. Creator of HealthBrowser. Open source contributor on GitHub (tuxbox78). Available for custom iOS and HealthKit development projects.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-period">2012 – 2025</div>
+            <div class="tl-role">Software Developer</div>
+            <div class="tl-org">Bavarian State Police · Bavaria</div>
+            <p class="tl-desc">Developed the internal search engine for law enforcement operations. Civil service software engineering in a security-critical environment requiring highest reliability standards.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--faint"></div>
+          <div>
+            <div class="tl-period">~2008 – 2012</div>
+            <div class="tl-role">Systems Engineer</div>
+            <div class="tl-org">Areva / Framatome · Erlangen</div>
+            <p class="tl-desc">Real-time turbine monitoring systems. Safety-critical software engineering for industrial nuclear infrastructure.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot tl-dot--faint"></div>
+          <div>
+            <div class="tl-period">~2000 – 2008</div>
+            <div class="tl-role">Linux Kernel Developer</div>
+            <div class="tl-org">SuSE Linux / Novell · Worldwide</div>
+            <p class="tl-desc">Kernel-level development for one of the leading Linux distributions. Extensive international deployments and conference engagements worldwide.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- CONTACT / HIRE ME -->
+  <section class="section section--sm" id="contact" aria-labelledby="hire-h">
+    <div class="wrap--narrow">
+      <div class="hire-box rv">
+        <p class="sec-lbl" style="display:block;text-align:center;margin-bottom:var(--sp3)">Freelance</p>
+        <h2 id="hire-h">Let's work together</h2>
+        <p>Looking for an experienced iOS developer for a HealthKit app, a systems integration project, or something in between? I'm available for freelance work — remote, flexible, and focused on quality. Drop me a line.</p>
+        <div class="hire-acts">
+          <a href="mailto:kontakt@f-seidel.de" class="btn btn-pri">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,12 2,6"/>
+            </svg>
+            kontakt@f-seidel.de
+          </a>
+          <a href="https://github.com/tuxbox78" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub Profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- PRIVACY POLICY -->
+  <section class="section privacy-bg" id="privacy" aria-labelledby="pp-h">
+    <div class="wrap">
+      <p class="sec-lbl rv">Legal</p>
+      <h2 class="sec-h rv d1" id="pp-h">Privacy Policy</h2>
+      <p class="sec-intro rv d2">Privacy policy for the <strong>HealthBrowser</strong> iOS application.</p>
+      <div class="privacy-box rv d3">
+        <h3>HealthBrowser – Privacy Policy</h3>
+        <p><strong>HealthBrowser</strong> accesses Apple HealthKit data solely to display and export it directly on your device. No health data is ever transmitted to any server, third party, or cloud service of any kind.</p>
+        <p>All data processing happens entirely on-device. HealthBrowser makes zero network requests. There is no analytics SDK, no crash reporter, no advertising framework, and no account system included in the app.</p>
+        <p>The app requires only the HealthKit read permission that you explicitly grant via the standard iOS permission dialog. You can revoke this permission at any time in iOS Settings → Privacy &amp; Security → Health.</p>
+        <p>No data is collected, stored externally, or shared — ever.</p>
+        <p style="color:var(--txf);margin-top:var(--sp5);font-size:var(--text-xs)">
+          Last updated: June 2026 · Frank Seidel · <a href="mailto:kontakt@f-seidel.de">kontakt@f-seidel.de</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- IMPRESSUM -->
+  <section class="section section--sm" id="impressum" aria-labelledby="imp-h">
+    <div class="wrap">
+      <p class="sec-lbl rv">Legal</p>
+      <h2 class="sec-h rv d1" id="imp-h">Impressum</h2>
+      <p class="sec-intro rv d2">Angaben gemäß § 5 TMG</p>
+      <div class="imp-grid rv d3">
+
+        <div class="imp-block">
+          <h4>Verantwortlich</h4>
+          <address>
+            Frank Seidel<br>
+            Jüdtstraße 5f<br>
+            91522 Ansbach<br>
+            Deutschland
+          </address>
+        </div>
+
+        <div class="imp-block">
+          <h4>Kontakt</h4>
+          <p>E-Mail: <a href="mailto:kontakt@f-seidel.de">kontakt@f-seidel.de</a></p>
+        </div>
+
+        <div class="imp-block">
+          <h4>Umsatzsteuer</h4>
+          <p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung).</p>
+        </div>
+
+        <div class="imp-block">
+          <h4>Hinweis</h4>
+          <p>Diese Website dient der Selbstdarstellung als freiberuflicher Softwareentwickler sowie als Informationsseite für die iOS-App HealthBrowser.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════ FOOTER ══════════════════════════════ -->
+<footer class="ftr" role="contentinfo">
+  <div class="wrap">
+    <div class="ftr-inner">
+      <p class="ftr-copy">© 2026 Frank Seidel · Ansbach, Germany</p>
+      <ul class="ftr-links" role="list">
+        <li><a href="#privacy">Privacy Policy</a></li>
+        <li><a href="#impressum">Impressum</a></li>
+        <li><a href="https://github.com/tuxbox78" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════ SCRIPTS ═════════════════════════════ -->
+<script>
+// Theme toggle
+(function(){
+  var html=document.documentElement,btn=document.querySelector('[data-thm]');
+  var t=html.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');
+  html.setAttribute('data-theme',t);
+  function ico(t){if(!btn)return;btn.setAttribute('aria-label','Switch to '+(t==='dark'?'light':'dark')+' mode');
+    btn.innerHTML=t==='dark'
+    ?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+    :'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';}
+  ico(t);
+  if(btn)btn.addEventListener('click',function(){t=t==='dark'?'light':'dark';html.setAttribute('data-theme',t);ico(t);});
+})();
+
+// Mobile nav
+(function(){
+  var tog=document.getElementById('navTog'),nav=document.getElementById('navList');
+  if(!tog||!nav)return;
+  tog.addEventListener('click',function(){var o=nav.classList.toggle('open');tog.setAttribute('aria-expanded',o);});
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');tog.setAttribute('aria-expanded','false');});});
+})();
+
+// Scroll reveal
+(function(){
+  if(!window.IntersectionObserver){document.querySelectorAll('.rv').forEach(function(e){e.classList.add('vis');});return;}
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(e){obs.observe(e);});
+})();
+</script>
+
+</body>
+</html>
