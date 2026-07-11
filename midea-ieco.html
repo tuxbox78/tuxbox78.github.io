@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>midea-ieco — Keep your Midea PortaSplit in iECO, automatically | Frank Seidel</title>
+  <meta name="description" content="Free, open-source command-line tools that keep your Midea PortaSplit's energy-saving iECO mode permanently active — locally, without the app, no cloud account. Measured ~4 kWh/day saved." />
+
+  <!-- Canonical + language alternates (separate URL per language, GDPR-clean, hreflang-linked) -->
+  <link rel="canonical" href="https://f-seidel.de/midea-ieco.html" />
+  <link rel="alternate" hreflang="en" href="https://f-seidel.de/midea-ieco.html" />
+  <link rel="alternate" hreflang="de" href="https://f-seidel.de/de/midea-ieco.html" />
+  <link rel="alternate" hreflang="x-default" href="https://f-seidel.de/midea-ieco.html" />
+
+  <!-- Open Graph / Twitter — URLs MUST be absolute; social scrapers run no JS and need a real image file -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Stop your Midea PortaSplit wasting electricity" />
+  <meta property="og:description" content="Free, open-source scripts that keep the energy-saving iECO mode permanently active — locally, no app, no cloud account. Measured ~4 kWh/day saved." />
+  <meta property="og:url" content="https://f-seidel.de/midea-ieco.html" />
+  <meta property="og:image" content="https://f-seidel.de/assets/og/midea-ieco.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en" />
+  <meta property="og:locale:alternate" content="de" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stop your Midea PortaSplit wasting electricity" />
+  <meta name="twitter:description" content="Free, open-source scripts that keep iECO permanently active — locally, no app, no cloud account." />
+  <meta name="twitter:image" content="https://f-seidel.de/assets/og/midea-ieco.png" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f98a3' stroke-width='2' stroke-linecap='round'%3E%3Cline x1='12' y1='2' x2='12' y2='22'/%3E%3Cline x1='2' y1='12' x2='22' y2='12'/%3E%3Cline x1='4.9' y1='4.9' x2='19.1' y2='19.1'/%3E%3Cline x1='19.1' y1='4.9' x2='4.9' y2='19.1'/%3E%3C/svg%3E" />
+
+  <!-- Self-hosted fonts (SIL OFL) — same stylesheet the main site uses, no third-party CDN -->
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "midea-ieco",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Linux, macOS",
+    "description": "Free, open-source command-line tools that keep the energy-saving iECO mode of Midea PortaSplit (and compatible) air conditioners permanently active over the local network, without the app or a cloud account.",
+    "url": "https://f-seidel.de/midea-ieco.html",
+    "downloadUrl": "https://github.com/tuxbox78/midea-ieco",
+    "license": "https://opensource.org/licenses/MIT",
+    "author": { "@type": "Person", "name": "Frank Seidel", "url": "https://f-seidel.de" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+
+  <style>
+    /* ─── TOKENS (shared with the main site) ─────────────────────── */
+    :root{
+      --font-display:'Space Grotesk','Helvetica Neue',sans-serif;
+      --font-body:'Inter',sans-serif;
+      --sp1:.25rem;--sp2:.5rem;--sp3:.75rem;--sp4:1rem;--sp5:1.25rem;--sp6:1.5rem;
+      --sp8:2rem;--sp10:2.5rem;--sp12:3rem;--sp16:4rem;--sp20:5rem;
+      --r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-full:9999px;
+      --ease:180ms cubic-bezier(.16,1,.3,1);
+    }
+    :root,[data-theme="light"]{
+      --bg:#f7f6f2;--surf:#f9f8f5;--surfoff:#f0ede8;--div:#dcd9d5;--bdr:#d4d1ca;
+      --tx:#28251d;--txm:#7a7974;--txf:#b5b4af;
+      --pri:#01696f;--prih:#0c4e54;--prihl:#cee4e2;
+      --sh-md:0 4px 12px oklch(.2 .01 80/.09);--sh-lg:0 12px 32px oklch(.2 .01 80/.13);
+    }
+    [data-theme="dark"]{
+      --bg:#111110;--surf:#1a1917;--surfoff:#252320;--div:#2e2d2b;--bdr:#383735;
+      --tx:#d4d3d0;--txm:#7a7876;--txf:#4f4e4c;
+      --pri:#4f98a3;--prih:#6db8c4;--prihl:#1a3336;
+      --sh-md:0 4px 12px oklch(0 0 0/.35);--sh-lg:0 12px 32px oklch(0 0 0/.5);
+    }
+    @media(prefers-color-scheme:dark){:root:not([data-theme]){
+      --bg:#111110;--surf:#1a1917;--surfoff:#252320;--div:#2e2d2b;--bdr:#383735;
+      --tx:#d4d3d0;--txm:#7a7876;--txf:#4f4e4c;
+      --pri:#4f98a3;--prih:#6db8c4;--prihl:#1a3336;
+      --sh-md:0 4px 12px oklch(0 0 0/.35);--sh-lg:0 12px 32px oklch(0 0 0/.5);
+    }}
+
+    /* ─── RESET ──────────────────────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+    body{min-height:100dvh;font-family:var(--font-body);color:var(--tx);background:var(--bg);
+      line-height:1.65;transition:background var(--ease),color var(--ease)}
+    h1,h2,h3{font-family:var(--font-display);line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+    p,li{text-wrap:pretty}
+    a{color:var(--pri);text-decoration:none;transition:color var(--ease)}
+    a:hover{color:var(--prih)}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--surfoff);
+      padding:.15em .4em;border-radius:.3em;font-size:.9em}
+    :focus-visible{outline:2px solid var(--pri);outline-offset:3px;border-radius:.25rem}
+    @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto}}
+
+    /* ─── LAYOUT ─────────────────────────────────────────────────── */
+    .wrap{max-width:760px;margin-inline:auto;padding-inline:clamp(var(--sp4),5vw,var(--sp12))}
+    main{padding-block:clamp(var(--sp10),6vw,var(--sp16))}
+
+    /* ─── HEADER ─────────────────────────────────────────────────── */
+    .hdr{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--div);
+      background:color-mix(in oklch,var(--bg) 84%,transparent);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    .hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--sp4);
+      padding-block:var(--sp4)}
+    .back{display:inline-flex;align-items:center;gap:var(--sp2);font-weight:700;color:var(--tx);
+      font-family:var(--font-display);letter-spacing:-.01em}
+    .back:hover{color:var(--pri)}
+    .hdr-acts{display:flex;align-items:center;gap:var(--sp3)}
+    .thm-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;
+      border-radius:var(--r-full);color:var(--txm);background:none;border:none;cursor:pointer;
+      transition:color var(--ease),background var(--ease)}
+    .thm-btn:hover{color:var(--tx);background:var(--surfoff)}
+
+    /* ─── BUTTONS ────────────────────────────────────────────────── */
+    .btn{display:inline-flex;align-items:center;gap:var(--sp2);padding:var(--sp3) var(--sp6);
+      border-radius:var(--r-full);font-size:.95rem;font-weight:600;
+      transition:background var(--ease),color var(--ease),box-shadow var(--ease)}
+    .btn-sm{padding:var(--sp2) var(--sp5);font-size:.9rem}
+    .btn-pri{background:var(--pri);color:#fff;box-shadow:var(--sh-md)}
+    .btn-pri:hover{background:var(--prih);color:#fff}
+    .btn-ghost{background:var(--surfoff);color:var(--tx)}
+    .btn-ghost:hover{background:var(--div)}
+
+    /* ─── HERO + SECTIONS ────────────────────────────────────────── */
+    .eyebrow{display:inline-flex;align-items:center;gap:var(--sp2);font-size:.75rem;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--pri);background:var(--prihl);
+      padding:var(--sp1) var(--sp3);border-radius:var(--r-full);margin-bottom:var(--sp5)}
+    .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--pri)}
+    h1{font-size:clamp(1.9rem,4.5vw,2.6rem);font-weight:800;margin-bottom:var(--sp5);max-width:20ch}
+    .sub{font-size:clamp(1.05rem,2.5vw,1.2rem);color:var(--txm);max-width:56ch;margin-bottom:var(--sp8)}
+    .btnrow{display:flex;flex-wrap:wrap;gap:var(--sp3);margin-bottom:var(--sp6)}
+    .lang-note{background:var(--prihl);border-radius:var(--r-lg);padding:var(--sp3) var(--sp5);
+      font-size:.9rem;font-weight:600;color:var(--pri);margin-bottom:var(--sp12)}
+    h2{font-size:clamp(1.35rem,3vw,1.6rem);font-weight:800;margin:var(--sp16) 0 var(--sp4)}
+    h2:first-of-type{margin-top:var(--sp8)}
+    p{color:var(--txm);margin-bottom:var(--sp4)}
+    ul{margin:0 0 var(--sp4) var(--sp5);color:var(--txm)}
+    li{margin-bottom:var(--sp2)}
+    strong{color:var(--tx);font-weight:700}
+
+    /* ─── CARDS + TABLE ──────────────────────────────────────────── */
+    .card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r-xl);
+      padding:clamp(var(--sp5),4vw,var(--sp8));margin:var(--sp6) 0}
+    .card h3{font-size:1.15rem;font-weight:800;margin-bottom:var(--sp4)}
+    .card p:last-child,.card ul:last-child{margin-bottom:0}
+    .tbl-scroll{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;font-size:.92rem;color:var(--txm);min-width:32rem}
+    caption{text-align:left;font-size:.8rem;color:var(--txf);margin-bottom:var(--sp3)}
+    th,td{padding:var(--sp3) var(--sp3);text-align:left;border-bottom:1px solid var(--div);vertical-align:top}
+    thead th{color:var(--tx);font-family:var(--font-display);font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+    tbody th{font-weight:600;color:var(--tx);font-family:var(--font-body)}
+    tr:last-child td,tr:last-child th{border-bottom:none}
+    .install code{display:block;padding:var(--sp4);border-radius:var(--r-md);background:var(--surfoff);
+      color:var(--tx);font-size:.86rem;line-height:1.5;overflow-x:auto;white-space:pre;border:1px solid var(--div)}
+    .muted{font-size:.85rem;color:var(--txf)}
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    .disclaimer{font-size:.85rem;color:var(--txf);border-top:1px solid var(--div);
+      margin-top:var(--sp12);padding-top:var(--sp6)}
+    .ftr{border-top:1px solid var(--div);padding-block:var(--sp8);margin-top:var(--sp8);
+      text-align:center;font-size:.8rem;color:var(--txf)}
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ HEADER ═══════════════════════════════ -->
+<header class="hdr">
+  <div class="wrap">
+    <a class="back" href="index.html#projects" aria-label="Back to Frank Seidel's homepage">&larr;&nbsp;Frank Seidel</a>
+    <div class="hdr-acts">
+      <button class="thm-btn" data-thm type="button" aria-label="Toggle colour theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a class="btn btn-ghost btn-sm" href="https://github.com/tuxbox78/midea-ieco" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════ MAIN ════════════════════════════════ -->
+<main>
+  <div class="wrap">
+
+    <span class="eyebrow">Free &middot; Open Source</span>
+    <h1>Keep your Midea PortaSplit in iECO — automatically, locally, no cloud account</h1>
+    <p class="sub">Small, reliable command-line tools that keep your Midea air conditioner's energy-saving <strong>iECO mode</strong> switched on for you — over your local network, even after you turn the unit off and on by hand, which normally resets it.</p>
+
+    <div class="btnrow">
+      <a class="btn btn-pri" href="https://github.com/tuxbox78/midea-ieco" target="_blank" rel="noopener noreferrer">Get it on GitHub</a>
+      <a class="btn btn-ghost" href="de/midea-ieco.html">🇩🇪 Deutsche Version</a>
+    </div>
+    <p class="lang-note">🇬🇧 Reading in English — <a href="de/midea-ieco.html">zur deutschen Fassung</a>.</p>
+
+    <h2>Why this matters right now</h2>
+    <p>Through the 2026 European heatwaves the Midea PortaSplit became one of the most sought-after home appliances of the season. If you managed to get one, it's worth running it as efficiently as it can go — and that means keeping iECO on.</p>
+
+    <h2>The problem nobody tells you about</h2>
+    <p>iECO can currently be switched on <strong>only</strong> through the MSmartHome / Midea Smarthome app — there is no physical iECO button on the remote. And it doesn't stay on: iECO exits automatically after eight hours, and every time you power the unit off and on by hand — which most people do every day — it silently switches off again. You won't notice, because the unit otherwise works normally at the temperature you set.</p>
+
+    <div class="card">
+      <h3>ECO vs. iECO — two different modes, easily confused</h3>
+      <div class="tbl-scroll">
+        <table>
+          <caption>The remote's ECO button and the app-only iECO are not the same feature.</caption>
+          <thead>
+            <tr><th scope="col"></th><th scope="col">ECO (button / remote)</th><th scope="col">iECO (app / cloud only)</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Activated via</th><td>Physical button on unit or remote</td><td>Only through the Midea app</td></tr>
+            <tr><th scope="row">Target temperature</th><td>Fixed automatically at 24&nbsp;°C</td><td>Whatever setpoint you chose (e.g. 21&nbsp;°C)</td></tr>
+            <tr><th scope="row">Mechanism</th><td>Simple fixed setpoint</td><td>Adaptive algorithm around your setpoint</td></tr>
+            <tr><th scope="row">Resets after off/on or 8&nbsp;h</th><td>—</td><td><strong>Yes</strong> — this is what this tool solves</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">This project is specifically about <strong>iECO</strong> — the app-only mode that quietly turns itself off. It never forces 24&nbsp;°C; it keeps iECO active at the temperature you already set.</p>
+    </div>
+
+    <h2>What iECO is worth</h2>
+    <p>Midea advertises iECO as saving up to <strong>60%</strong> versus standard operation, with up to eight hours of runtime on about 1.2&nbsp;kWh (Midea's own figures). An independent ten-hour practical test measured roughly <strong>100&nbsp;W</strong> lower draw in iECO than in Auto mode, at a comfortable room temperature. Measurements taken for this project found about <strong>4&nbsp;kWh per day</strong> of avoidable extra consumption during continuous operation when iECO was not active — with no comfort benefit from running without it.</p>
+
+    <div class="card">
+      <h3>The fix</h3>
+      <ul>
+        <li><code>midea_ieco_ensure.py</code> — checks and enforces iECO, either always or only when the unit is already running (a safe <code>--only-if-on</code> mode that never powers the AC on for you)</li>
+        <li><code>midea_refresh_tokens.py</code> — fetches the local access credentials your unit needs, with a single command and <strong>no Midea password</strong></li>
+      </ul>
+      <p>Both talk to your air conditioner <strong>directly over your local network</strong> — no cloud round-trip in normal operation, and no dependency on Midea's servers staying online.</p>
+    </div>
+
+    <h2>Install in one line</h2>
+    <p>The installer supports Debian/Ubuntu/Raspberry&nbsp;Pi&nbsp;OS, Fedora/RHEL, Arch, Alpine, openSUSE and macOS, with a bilingual (English/German) setup that discovers your units on the network for you:</p>
+    <div class="card install">
+      <code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/tuxbox78/midea-ieco/main/install.sh)"</code>
+      <p class="muted">It's open source — you can read <code>install.sh</code> on GitHub before you run it. The setup needs <strong>no Midea account and no password</strong>: device tokens are bound to the unit, not to your account, and are fetched locally. Nothing is ever stored in the cloud.</p>
+    </div>
+
+    <h2>What you get</h2>
+    <ul>
+      <li>Automatic iECO enforcement via cron, running quietly in the background</li>
+      <li>A safe <code>--only-if-on</code> mode that never switches your AC on by itself</li>
+      <li>Simple <code>midea-ieco</code> commands, including an in-place updater</li>
+      <li>Siri Shortcuts integration — control it by voice from your iPhone</li>
+      <li>Optional Homebridge / HomeKit integration for full smart-home control</li>
+      <li>Full setup documentation, in English and German</li>
+    </ul>
+
+    <h2>Requirements</h2>
+    <p>A small, always-on computer on the same network as the unit — a Raspberry&nbsp;Pi, home server, NAS or Mac — running <strong>Python&nbsp;3.11+</strong> (not the iPhone itself). The air conditioner must be reachable on the local network (TCP port 6444) and already added to the Midea app once, for Wi-Fi onboarding. Besides the PortaSplit, iECO-capable Midea rebrands from <strong>Comfee, Toshiba, Carrier and Klimaire</strong> work too.</p>
+
+    <div class="card">
+      <h3>Already running Home Assistant?</h3>
+      <p>Then you don't need this. Use the actively maintained <a href="https://github.com/wuwentao/midea_ac_lan" target="_blank" rel="noopener noreferrer">midea_ac_lan</a> integration, which exposes iECO as one preset among full climate controls. This project is for the narrower case: a Raspberry&nbsp;Pi, Mac or small server that should just keep iECO on, <strong>without</strong> a running smart-home server.</p>
+    </div>
+
+    <div class="btnrow" style="margin-top:var(--sp10)">
+      <a class="btn btn-pri" href="https://github.com/tuxbox78/midea-ieco" target="_blank" rel="noopener noreferrer">View midea-ieco on GitHub →</a>
+    </div>
+
+    <p class="disclaimer">This is an independent, community-built tool and is not affiliated with, endorsed by, or sponsored by Midea Group. “Midea” and “PortaSplit” are trademarks of their respective owner. Provided free of charge, as-is, under the MIT open-source license.</p>
+
+  </div>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">© 2026 Frank Seidel · Ansbach, Germany · <a href="mailto:kontakt@f-seidel.de">kontakt@f-seidel.de</a> · <a href="https://github.com/tuxbox78/midea-ieco" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+</footer>
+
+<!-- ═══════════════════════ THEME TOGGLE ════════════════════════ -->
+<script>
+// Mirror the main site: respect the OS theme by default, allow a manual toggle.
+(function(){
+  var html=document.documentElement,btn=document.querySelector('[data-thm]');
+  var t=html.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  html.setAttribute('data-theme',t);
+  function ico(t){if(!btn)return;btn.setAttribute('aria-label','Switch to '+(t==='dark'?'light':'dark')+' mode');
+    btn.innerHTML=t==='dark'
+    ?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+    :'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';}
+  ico(t);
+  if(btn)btn.addEventListener('click',function(){t=t==='dark'?'light':'dark';html.setAttribute('data-theme',t);ico(t);});
+})();
+</script>
+
+</body>
+</html>
