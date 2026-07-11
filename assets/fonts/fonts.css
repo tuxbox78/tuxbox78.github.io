@@ -1,0 +1,20 @@
+/*
+ * Self-hosted webfonts for f-seidel.de — SIL Open Font License 1.1.
+ *   Body:    Inter          (see OFL-Inter.txt)
+ *   Display: Space Grotesk  (see OFL-SpaceGrotesk.txt)
+ *
+ * Self-hosted on purpose: no visitor IP is ever sent to a third-party font
+ * CDN (GDPR). The OFL permits self-hosting and redistribution, including from
+ * this public repository.
+ *
+ * Space Grotesk ships no 800 weight; the site's 800 headings resolve to 700
+ * via nearest-weight matching — intentional, do not fake an 800 face.
+ *
+ * url() paths are relative to THIS file (assets/fonts/), so the same stylesheet
+ * works unchanged whether linked from / or from /de/.
+ */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('inter-400.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url('inter-500.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url('inter-700.woff2') format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;src:url('space-grotesk-500.woff2') format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;src:url('space-grotesk-700.woff2') format('woff2')}
