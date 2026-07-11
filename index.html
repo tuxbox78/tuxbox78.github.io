@@ -10,13 +10,12 @@
   <meta property="og:image" content="https://tuxbox78.github.io/portrait.jpg" />
   <meta property="og:url" content="https://tuxbox78.github.io" />
   <meta property="og:type" content="website" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <style>
     /* ─── TOKENS ─────────────────────────────────────────────── */
     :root {
-      --font-display:'Cabinet Grotesk','Helvetica Neue',sans-serif;
-      --font-body:'Satoshi','Inter',sans-serif;
+      --font-display:'Space Grotesk','Helvetica Neue',sans-serif;
+      --font-body:'Inter',sans-serif;
       --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
       --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
       --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
@@ -302,7 +301,7 @@
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
         <rect width="30" height="30" rx="7" fill="currentColor"/>
         <text x="15" y="21" text-anchor="middle"
-          font-family="Cabinet Grotesk,Helvetica Neue,sans-serif"
+          font-family="Space Grotesk,Helvetica Neue,sans-serif"
           font-weight="800" font-size="14" fill="var(--bg)">FS</text>
       </svg>
       Frank Seidel
@@ -385,7 +384,7 @@
                 <text
                   x="140" y="148"
                   text-anchor="middle"
-                  font-family="Cabinet Grotesk, Helvetica Neue, sans-serif"
+                  font-family="Space Grotesk, Helvetica Neue, sans-serif"
                   font-weight="800"
                   font-size="28"
                   letter-spacing="-0.5"
@@ -397,7 +396,7 @@
                 <text
                   x="140" y="172"
                   text-anchor="middle"
-                  font-family="Satoshi, monospace"
+                  font-family="Inter, monospace"
                   font-weight="500"
                   font-size="12"
                   letter-spacing="0.5"
@@ -559,7 +558,7 @@
   window._rvObserver=new IntersectionObserver(function(entries){
     entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');window._rvObserver&&window._rvObserver.unobserve(e.target);}});
   },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.rv').forEach(function(e){obs.observe(e);});
+  document.querySelectorAll('.rv').forEach(function(e){window._rvObserver.observe(e);});
 })();
 </script>
 
