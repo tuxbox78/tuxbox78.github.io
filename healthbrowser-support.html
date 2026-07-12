@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — HealthBrowser | Frank Seidel</title>
+  <meta name="description" content="Support and FAQ for HealthBrowser, a technical viewer and exporter for your Apple Health (HealthKit) data on iPhone. Contact, permissions help, and CSV export guidance." />
+
+  <link rel="canonical" href="https://f-seidel.de/healthbrowser-support.html" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Support — HealthBrowser" />
+  <meta property="og:description" content="Help, FAQ, and contact for HealthBrowser — the on-device Apple Health viewer and CSV exporter." />
+  <meta property="og:url" content="https://f-seidel.de/healthbrowser-support.html" />
+  <meta property="og:locale" content="en" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Support — HealthBrowser" />
+  <meta name="twitter:description" content="Help, FAQ, and contact for HealthBrowser." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f98a3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='22 12 18 12 15 21 9 3 6 12 2 12'/%3E%3C/svg%3E" />
+
+  <!-- Self-hosted fonts (SIL OFL) — same stylesheet the main site uses, no third-party CDN -->
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+
+  <style>
+    /* ─── TOKENS (shared with the main site) ─────────────────────── */
+    :root{
+      --font-display:'Space Grotesk','Helvetica Neue',sans-serif;
+      --font-body:'Inter',sans-serif;
+      --sp1:.25rem;--sp2:.5rem;--sp3:.75rem;--sp4:1rem;--sp5:1.25rem;--sp6:1.5rem;
+      --sp8:2rem;--sp10:2.5rem;--sp12:3rem;--sp16:4rem;--sp20:5rem;
+      --r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-full:9999px;
+      --ease:180ms cubic-bezier(.16,1,.3,1);
+    }
+    :root,[data-theme="light"]{
+      --bg:#f7f6f2;--surf:#f9f8f5;--surfoff:#f0ede8;--div:#dcd9d5;--bdr:#d4d1ca;
+      --tx:#28251d;--txm:#7a7974;--txf:#b5b4af;
+      --pri:#01696f;--prih:#0c4e54;--prihl:#cee4e2;
+      --sh-md:0 4px 12px oklch(.2 .01 80/.09);--sh-lg:0 12px 32px oklch(.2 .01 80/.13);
+    }
+    [data-theme="dark"]{
+      --bg:#111110;--surf:#1a1917;--surfoff:#252320;--div:#2e2d2b;--bdr:#383735;
+      --tx:#d4d3d0;--txm:#7a7876;--txf:#4f4e4c;
+      --pri:#4f98a3;--prih:#6db8c4;--prihl:#1a3336;
+      --sh-md:0 4px 12px oklch(0 0 0/.35);--sh-lg:0 12px 32px oklch(0 0 0/.5);
+    }
+    @media(prefers-color-scheme:dark){:root:not([data-theme]){
+      --bg:#111110;--surf:#1a1917;--surfoff:#252320;--div:#2e2d2b;--bdr:#383735;
+      --tx:#d4d3d0;--txm:#7a7876;--txf:#4f4e4c;
+      --pri:#4f98a3;--prih:#6db8c4;--prihl:#1a3336;
+      --sh-md:0 4px 12px oklch(0 0 0/.35);--sh-lg:0 12px 32px oklch(0 0 0/.5);
+    }}
+
+    /* ─── RESET ──────────────────────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+    body{min-height:100dvh;font-family:var(--font-body);color:var(--tx);background:var(--bg);
+      line-height:1.65;transition:background var(--ease),color var(--ease)}
+    h1,h2,h3{font-family:var(--font-display);line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+    p,li{text-wrap:pretty}
+    a{color:var(--pri);text-decoration:none;transition:color var(--ease)}
+    a:hover{color:var(--prih)}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--surfoff);
+      padding:.15em .4em;border-radius:.3em;font-size:.9em}
+    :focus-visible{outline:2px solid var(--pri);outline-offset:3px;border-radius:.25rem}
+    @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;scroll-behavior:auto}}
+
+    /* ─── LAYOUT ─────────────────────────────────────────────────── */
+    .wrap{max-width:760px;margin-inline:auto;padding-inline:clamp(var(--sp4),5vw,var(--sp12))}
+    main{padding-block:clamp(var(--sp10),6vw,var(--sp16))}
+
+    /* ─── HEADER ─────────────────────────────────────────────────── */
+    .hdr{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--div);
+      background:color-mix(in oklch,var(--bg) 84%,transparent);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    .hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--sp4);
+      padding-block:var(--sp4)}
+    .back{display:inline-flex;align-items:center;gap:var(--sp2);font-weight:700;color:var(--tx);
+      font-family:var(--font-display);letter-spacing:-.01em}
+    .back:hover{color:var(--pri)}
+    .hdr-acts{display:flex;align-items:center;gap:var(--sp3)}
+    .thm-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;
+      border-radius:var(--r-full);color:var(--txm);background:none;border:none;cursor:pointer;
+      transition:color var(--ease),background var(--ease)}
+    .thm-btn:hover{color:var(--tx);background:var(--surfoff)}
+    .btn{display:inline-flex;align-items:center;gap:var(--sp2);padding:var(--sp3) var(--sp6);
+      border-radius:var(--r-full);font-size:.95rem;font-weight:600;
+      transition:background var(--ease),color var(--ease),box-shadow var(--ease)}
+    .btn-sm{padding:var(--sp2) var(--sp5);font-size:.9rem}
+    .btn-ghost{background:var(--surfoff);color:var(--tx)}
+    .btn-ghost:hover{background:var(--div)}
+
+    /* ─── CONTENT ────────────────────────────────────────────────── */
+    .eyebrow{display:inline-flex;align-items:center;gap:var(--sp2);font-size:.75rem;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--pri);background:var(--prihl);
+      padding:var(--sp1) var(--sp3);border-radius:var(--r-full);margin-bottom:var(--sp5)}
+    .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--pri)}
+    h1{font-size:clamp(1.9rem,4.5vw,2.6rem);font-weight:800;margin-bottom:var(--sp5);max-width:20ch}
+    .sub{font-size:clamp(1.05rem,2.5vw,1.2rem);color:var(--txm);max-width:56ch;margin-bottom:var(--sp8)}
+    h2{font-size:clamp(1.2rem,3vw,1.45rem);font-weight:800;margin:var(--sp12) 0 var(--sp4)}
+    h2:first-of-type{margin-top:var(--sp8)}
+    p{color:var(--txm);margin-bottom:var(--sp4)}
+    ul{margin:0 0 var(--sp4) var(--sp5);color:var(--txm)}
+    li{margin-bottom:var(--sp2)}
+    strong{color:var(--tx);font-weight:700}
+
+    /* ─── CONTACT + FAQ CARDS ────────────────────────────────────── */
+    .card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r-xl);
+      padding:clamp(var(--sp5),4vw,var(--sp8));margin:var(--sp6) 0}
+    .card h3{font-size:1.1rem;font-weight:800;margin-bottom:var(--sp3)}
+    .card p:last-child{margin-bottom:0}
+    .contact-mail{font-family:var(--font-display);font-size:1.15rem;font-weight:700}
+
+    .faq{border-top:1px solid var(--div);padding-block:var(--sp6)}
+    .faq:last-of-type{border-bottom:1px solid var(--div)}
+    .faq h3{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--tx);
+      margin-bottom:var(--sp3)}
+    .faq p:last-child{margin-bottom:0}
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    .ftr{border-top:1px solid var(--div);padding-block:var(--sp8);margin-top:var(--sp12);
+      text-align:center;font-size:.8rem;color:var(--txf)}
+    .ftr a{color:var(--txm)}.ftr a:hover{color:var(--pri)}
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ HEADER ═══════════════════════════════ -->
+<header class="hdr">
+  <div class="wrap">
+    <a class="back" href="index.html#projects" aria-label="Back to Frank Seidel's homepage">&larr;&nbsp;Frank Seidel</a>
+    <div class="hdr-acts">
+      <button class="thm-btn" data-thm type="button" aria-label="Toggle colour theme">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a class="btn btn-ghost btn-sm" href="healthbrowser-privacy.html">Privacy</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════ MAIN ════════════════════════════════ -->
+<main>
+  <div class="wrap">
+
+    <span class="eyebrow">HealthBrowser</span>
+    <h1>Support</h1>
+    <p class="sub">HealthBrowser is a technical viewer and exporter for the Apple Health (HealthKit) data on your iPhone. Here's how to get help and get the most out of it.</p>
+
+    <div class="card">
+      <h3>Get in touch</h3>
+      <p>For questions, bug reports, or feedback, email <a class="contact-mail" href="mailto:kontakt@f-seidel.de">kontakt@f-seidel.de</a>. Please include your iOS version and the data type involved — it helps me answer faster.</p>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq">
+      <h3>The main list is empty — is the app broken?</h3>
+      <p>No. HealthBrowser only shows the data types that actually contain records on your device, so you're never faced with empty categories. If the Health app has no data yet, or you haven't granted read permission, the list will be empty. Add some data in the Health app, or check that access is enabled under <strong>Settings → Privacy &amp; Security → Health → Health Browser</strong>, then pull to refresh.</p>
+    </div>
+
+    <div class="faq">
+      <h3>How do I grant or change permissions?</h3>
+      <p>On first launch the app asks for read access to your health data through the standard iOS permission dialog. You can review or change exactly which data types are shared at any time under <strong>Settings → Privacy &amp; Security → Health → Health Browser</strong>. HealthBrowser only ever requests <strong>read</strong> access — it never writes to your Health data.</p>
+    </div>
+
+    <div class="faq">
+      <h3>How do I export my data?</h3>
+      <p>Open any data type and use the share button to export its records as a <strong>CSV</strong> file. You can also run a bulk export that combines all currently visible, filtered types into a single file. Exports are delivered through the standard iOS share sheet, so you can send them to Files, Mail, or any other app — ready for a spreadsheet, a script, or your own analysis.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Why does a large export take a moment?</h3>
+      <p>High-volume types such as heart rate or step count can hold hundreds of thousands of records. HealthBrowser paginates and streams these safely to avoid running out of memory, so a very large export may take a few seconds to assemble. This is expected.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Where does my data go?</h3>
+      <p>Nowhere except where you send it. HealthBrowser makes no network requests; all processing happens on-device. See the <a href="healthbrowser-privacy.html">Privacy Policy</a> for the full details.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Is HealthBrowser a medical device?</h3>
+      <p>No. HealthBrowser is a viewer and exporter for data your iPhone has already recorded. It does not diagnose, treat, monitor, or prevent any medical condition, and it makes no measurements of its own. Always consult a qualified professional for medical decisions.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">© 2026 Frank Seidel · Ansbach, Germany · <a href="mailto:kontakt@f-seidel.de">kontakt@f-seidel.de</a> · <a href="index.html#impressum">Impressum</a> · <a href="healthbrowser-privacy.html">Privacy</a></div>
+</footer>
+
+<!-- ═══════════════════════ THEME TOGGLE ════════════════════════ -->
+<script>
+// Mirror the main site: respect the OS theme by default, allow a manual toggle.
+(function(){
+  var html=document.documentElement,btn=document.querySelector('[data-thm]');
+  var t=html.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  html.setAttribute('data-theme',t);
+  function ico(t){if(!btn)return;btn.setAttribute('aria-label','Switch to '+(t==='dark'?'light':'dark')+' mode');
+    btn.innerHTML=t==='dark'
+    ?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+    :'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';}
+  ico(t);
+  if(btn)btn.addEventListener('click',function(){t=t==='dark'?'light':'dark';html.setAttribute('data-theme',t);ico(t);});
+})();
+</script>
+
+</body>
+</html>
