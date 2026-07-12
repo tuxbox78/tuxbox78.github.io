@@ -185,6 +185,9 @@
     .proj-links a{font-size:var(--text-sm);font-weight:500;display:inline-flex;align-items:center;
       gap:var(--sp2);color:var(--txm);transition:color var(--ease)}
     .proj-links a:hover{color:var(--pri)}
+    /* Non-interactive status (e.g. "Under development"): looks like a links-row item but is not a link */
+    .proj-links .status{font-size:var(--text-sm);font-weight:500;display:inline-flex;align-items:center;
+      gap:var(--sp2);color:var(--txf);cursor:default}
 
     /* ─── TIMELINE ───────────────────────────────────────────── */
     .timeline{position:relative;display:flex;flex-direction:column}
