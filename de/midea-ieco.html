@@ -228,6 +228,17 @@
       <p>Beide sprechen deine Klimaanlage <strong>direkt im lokalen Netzwerk</strong> an — im Normalbetrieb ganz ohne Cloud-Umweg und ohne Abhängigkeit davon, dass Mideas Server online bleiben.</p>
     </div>
 
+    <h2>In der Presse</h2>
+    <p>Fachmedien, die über dieses Projekt berichtet oder mit seinen Messungen gearbeitet haben:</p>
+    <div class="card">
+      <ul>
+        <li><a href="https://stadt-bremerhaven.de/midea-portasplit-wie-ihr-mit-ieco-strom-spart/" target="_blank" rel="noopener noreferrer">Caschys Blog</a> — Carsten Knobloch, 26.&nbsp;Juli 2026: übers Stromsparen mit iECO und die Verwechslung von ECO und iECO.</li>
+        <li><a href="https://www.techboys.de/portasplit-ieco" target="_blank" rel="noopener noreferrer">techboys.de</a> — Gary Madeo, 26.&nbsp;Juli 2026: der iECO-Modus in der Praxis, aufgebaut auf den Verbrauchsmessungen dieses Projekts (Shelly-Logs und Tagestabellen).</li>
+        <li><a href="https://www.techboys.de/portasplit-home-assistant" target="_blank" rel="noopener noreferrer">techboys.de</a> — Gary Madeo, 26.&nbsp;Juli 2026: zu Mideas Token-API-Abschaltung; das Update enthält das Testprotokoll dieses Projekts dazu, welche Cloud noch Geräte-Token ausgibt.</li>
+      </ul>
+      <p class="muted">Zur Transparenz: Messdaten, API-Protokoll und Screenshots habe ich <em>techboys.de</em> zur Verfügung gestellt und werde dort als Quelle genannt. Die Artikel sind redaktionell unabhängig entstanden und wurden von den Autoren eigenständig nachgerechnet — es floss kein Geld, in keine Richtung, und ich hatte keinen Einfluss auf die Formulierungen.</p>
+    </div>
+
     <h2>In einer Zeile installieren</h2>
     <p>Der Installer unterstützt Debian/Ubuntu/Raspberry&nbsp;Pi&nbsp;OS, Fedora/RHEL, Arch, Alpine, openSUSE und macOS, mit zweisprachigem (Deutsch/Englisch) Setup, das deine Geräte im Netzwerk für dich findet:</p>
     <div class="card install">
@@ -250,7 +261,7 @@
 
     <div class="card">
       <h3>Du nutzt bereits Home Assistant?</h3>
-      <p>Dann brauchst du das hier nicht. Verwende die aktiv gepflegte Integration <a href="https://github.com/wuwentao/midea_ac_lan" target="_blank" rel="noopener noreferrer">midea_ac_lan</a>, die iECO als eine Voreinstellung unter vielen Klimasteuerungen anbietet. Dieses Projekt ist für den engeren Fall gedacht: ein Raspberry&nbsp;Pi, Mac oder kleiner Server, der iECO einfach an lassen soll — <strong>ohne</strong> laufende Smart-Home-Server-Software.</p>
+      <p>Dann nimm für die Steuerung eine Home-Assistant-Integration — aber achte darauf, welche: <a href="https://github.com/mill1000/midea-ac-py" target="_blank" rel="noopener noreferrer">midea-ac-py</a> bietet iECO tatsächlich an (es baut auf derselben <code>msmart-ng</code>-Bibliothek auf wie dieses Projekt), während das verbreitete <a href="https://github.com/wuwentao/midea_ac_lan" target="_blank" rel="noopener noreferrer">midea_ac_lan</a> <strong>iECO gar nicht setzen kann</strong> — sein <code>eco</code>-Preset ist der einfache, fest auf 24&nbsp;°C gesetzte Modus. So oder so liefert eine Integration nur die Steuerung; iECO nach einem Aus/Ein wieder zu aktivieren, erfordert zusätzlich eine Automatisierung. Dieses Projekt ist für den engeren Fall gedacht: ein Raspberry&nbsp;Pi, Mac oder kleiner Server, der iECO einfach an lassen soll — <strong>ohne</strong> laufende Smart-Home-Server-Software.</p>
     </div>
 
     <div class="btnrow" style="margin-top:var(--sp10)">

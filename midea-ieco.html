@@ -228,6 +228,17 @@
       <p>Both talk to your air conditioner <strong>directly over your local network</strong> — no cloud round-trip in normal operation, and no dependency on Midea's servers staying online.</p>
     </div>
 
+    <h2>In the press</h2>
+    <p>German tech outlets that have covered this project or worked with its measurements:</p>
+    <div class="card">
+      <ul>
+        <li><a href="https://stadt-bremerhaven.de/midea-portasplit-wie-ihr-mit-ieco-strom-spart/" target="_blank" rel="noopener noreferrer">Caschy's Blog</a> — Carsten Knobloch, 26 July 2026: on saving energy with iECO, and on the ECO/iECO mix-up.</li>
+        <li><a href="https://www.techboys.de/portasplit-ieco" target="_blank" rel="noopener noreferrer">techboys.de</a> — Gary Madeo, 26 July 2026: the iECO mode in practice, built on this project's consumption measurements (Shelly logs and day-by-day tables).</li>
+        <li><a href="https://www.techboys.de/portasplit-home-assistant" target="_blank" rel="noopener noreferrer">techboys.de</a> — Gary Madeo, 26 July 2026: on Midea's token-API shutdown; the update includes this project's test protocol on which cloud still issues device tokens.</li>
+      </ul>
+      <p class="muted">For transparency: I supplied the measurement data, the API protocol and screenshots to <em>techboys.de</em> and am credited there as the source. The articles were written and fact-checked independently by their authors — no money changed hands in either direction, and I had no say over the wording.</p>
+    </div>
+
     <h2>Install in one line</h2>
     <p>The installer supports Debian/Ubuntu/Raspberry&nbsp;Pi&nbsp;OS, Fedora/RHEL, Arch, Alpine, openSUSE and macOS, with a bilingual (English/German) setup that discovers your units on the network for you:</p>
     <div class="card install">
@@ -250,7 +261,7 @@
 
     <div class="card">
       <h3>Already running Home Assistant?</h3>
-      <p>Then you don't need this. Use the actively maintained <a href="https://github.com/wuwentao/midea_ac_lan" target="_blank" rel="noopener noreferrer">midea_ac_lan</a> integration, which exposes iECO as one preset among full climate controls. This project is for the narrower case: a Raspberry&nbsp;Pi, Mac or small server that should just keep iECO on, <strong>without</strong> a running smart-home server.</p>
+      <p>Then use a Home Assistant integration for the controls — but mind which one: <a href="https://github.com/mill1000/midea-ac-py" target="_blank" rel="noopener noreferrer">midea-ac-py</a> does expose iECO (it builds on the same <code>msmart-ng</code> library this project uses), while the popular <a href="https://github.com/wuwentao/midea_ac_lan" target="_blank" rel="noopener noreferrer">midea_ac_lan</a> <strong>cannot set iECO at all</strong> — its <code>eco</code> preset is the plain fixed-24&nbsp;°C mode. Either way an integration only gives you the control; re-enabling iECO after a power cycle still needs an automation on top. This project is for the narrower case: a Raspberry&nbsp;Pi, Mac or small server that should just keep iECO on, <strong>without</strong> a running smart-home server.</p>
     </div>
 
     <div class="btnrow" style="margin-top:var(--sp10)">
