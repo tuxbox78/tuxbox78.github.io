@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>midea-ieco — Midea PortaSplit dauerhaft im iECO-Modus halten | Frank Seidel</title>
-  <meta name="description" content="Kostenlose, quelloffene Kommandozeilen-Werkzeuge, die den Energiespar-Modus iECO deiner Midea PortaSplit dauerhaft aktiv halten — lokal, ohne App, ohne Cloud-Konto. Gemessen ~4 kWh/Tag gespart." />
+  <meta name="description" content="Kostenlose, quelloffene Kommandozeilen-Werkzeuge, die den Energiespar-Modus iECO deiner Midea PortaSplit dauerhaft aktiv halten — lokal, ohne App, ohne Cloud-Konto. Gemessen 2–3,8 kWh/Tag gespart." />
 
   <!-- Canonical + Sprach-Alternativen (eigene URL je Sprache, DSGVO-sauber, per hreflang verknüpft) -->
   <link rel="canonical" href="https://f-seidel.de/de/midea-ieco.html" />
@@ -15,7 +15,7 @@
   <!-- Open Graph / Twitter — URLs MÜSSEN absolut sein; Social-Scraper führen kein JS aus und brauchen eine echte Bilddatei -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Schluss mit unnötig hohem Stromverbrauch bei deiner Midea PortaSplit" />
-  <meta property="og:description" content="Kostenlose, quelloffene Skripte, die den Energiespar-Modus iECO dauerhaft aktiv halten — lokal, ohne App, ohne Cloud-Konto. Gemessen ~4 kWh/Tag gespart." />
+  <meta property="og:description" content="Kostenlose, quelloffene Skripte, die den Energiespar-Modus iECO dauerhaft aktiv halten — lokal, ohne App, ohne Cloud-Konto. Gemessen 2–3,8 kWh/Tag gespart." />
   <meta property="og:url" content="https://f-seidel.de/de/midea-ieco.html" />
   <meta property="og:image" content="https://f-seidel.de/assets/og/midea-ieco.png" />
   <meta property="og:image:width" content="1200" />
@@ -215,7 +215,8 @@
     </div>
 
     <h2>Was iECO bringt</h2>
-    <p>Midea bewirbt iECO mit bis zu <strong>60&nbsp;%</strong> Ersparnis gegenüber dem Normalbetrieb, bei bis zu acht Stunden Laufzeit auf nur etwa 1,2&nbsp;kWh (Herstellerangaben). Ein unabhängiger Zehn-Stunden-Praxistest maß rund <strong>100&nbsp;W</strong> niedrigeren Verbrauch im iECO- gegenüber dem Auto-Modus, bei angenehmer Raumtemperatur. Messungen im Rahmen dieses Projekts ergaben rund <strong>4&nbsp;kWh pro Tag</strong> vermeidbaren Mehrverbrauch im Dauerbetrieb, wenn iECO nicht aktiv war — ohne jeden Komfortvorteil durch den Betrieb ohne iECO.</p>
+    <p>Midea bewirbt iECO mit bis zu <strong>60&nbsp;%</strong> Ersparnis gegenüber dem Normalbetrieb, bei bis zu acht Stunden Laufzeit auf nur etwa 1,2&nbsp;kWh (Herstellerangaben). Ein unabhängiger Zehn-Stunden-Praxistest maß rund <strong>100&nbsp;W</strong> niedrigeren Verbrauch im iECO- gegenüber dem Auto-Modus, bei angenehmer Raumtemperatur. Messungen im Rahmen dieses Projekts — zwei baugleiche Geräte an je einem eigenen Messstecker, zehn Tage bei unverändert 23&nbsp;°C Sollwert — ergaben <strong>2 bis 3,8&nbsp;kWh pro Tag und Gerät</strong> vermeidbaren Mehrverbrauch, wenn iECO nicht aktiv war, ohne jeden Komfortvorteil durch den Betrieb ohne iECO. Der sauberere der beiden Vergleiche lag bei 3,8&nbsp;kWh/Tag, also rund der Hälfte des Verbrauchs mit iECO.</p>
+    <p class="muted">Das ist eine Alltagsmessung, kein Labortest: Die Tage mit und ohne iECO sind verschiedene Kalendertage, die Außentemperatur wurde nicht mitprotokolliert. Für die Vergleichbarkeit spricht, dass die nächtliche Grundlast an beiden praktisch identisch ist — der Unterschied entsteht also in den aktiven Kühlstunden, nicht schlicht durch heißere Tage.</p>
     <p class="muted">Ein Hinweis zu diesen „acht Stunden“: Das ist eine <em>Verbrauchsangabe</em> (acht Stunden Laufzeit auf 1,2&nbsp;kWh), kein Timeout. Sie wird häufig so gelesen, als schalte sich iECO nach acht Stunden ab. Ob iECO sich zusätzlich nach längerem ungestörten Betrieb von selbst beendet, ist <strong>unbestätigt</strong> — mehrere PortaSplit-Besitzer berichten, das nie beobachtet zu haben, und jede Interaktion (App, Fernbedienung, Temperatur ändern) setzt einen solchen Timer offenbar zurück. Reproduzierbar ist das oben beschriebene Verhalten beim Aus- und Einschalten — und genau dafür ist dieses Tool da.</p>
 
     <div class="card">

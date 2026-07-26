@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>midea-ieco — Keep your Midea PortaSplit in iECO, automatically | Frank Seidel</title>
-  <meta name="description" content="Free, open-source command-line tools that keep your Midea PortaSplit's energy-saving iECO mode permanently active — locally, without the app, no cloud account. Measured ~4 kWh/day saved." />
+  <meta name="description" content="Free, open-source command-line tools that keep your Midea PortaSplit's energy-saving iECO mode permanently active — locally, without the app, no cloud account. Measured 2–3.8 kWh/day saved." />
 
   <!-- Canonical + language alternates (separate URL per language, GDPR-clean, hreflang-linked) -->
   <link rel="canonical" href="https://f-seidel.de/midea-ieco.html" />
@@ -15,7 +15,7 @@
   <!-- Open Graph / Twitter — URLs MUST be absolute; social scrapers run no JS and need a real image file -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Stop your Midea PortaSplit wasting electricity" />
-  <meta property="og:description" content="Free, open-source scripts that keep the energy-saving iECO mode permanently active — locally, no app, no cloud account. Measured ~4 kWh/day saved." />
+  <meta property="og:description" content="Free, open-source scripts that keep the energy-saving iECO mode permanently active — locally, no app, no cloud account. Measured 2–3.8 kWh/day saved." />
   <meta property="og:url" content="https://f-seidel.de/midea-ieco.html" />
   <meta property="og:image" content="https://f-seidel.de/assets/og/midea-ieco.png" />
   <meta property="og:image:width" content="1200" />
@@ -215,7 +215,8 @@
     </div>
 
     <h2>What iECO is worth</h2>
-    <p>Midea advertises iECO as saving up to <strong>60%</strong> versus standard operation, with up to eight hours of runtime on about 1.2&nbsp;kWh (Midea's own figures). An independent ten-hour practical test measured roughly <strong>100&nbsp;W</strong> lower draw in iECO than in Auto mode, at a comfortable room temperature. Measurements taken for this project found about <strong>4&nbsp;kWh per day</strong> of avoidable extra consumption during continuous operation when iECO was not active — with no comfort benefit from running without it.</p>
+    <p>Midea advertises iECO as saving up to <strong>60%</strong> versus standard operation, with up to eight hours of runtime on about 1.2&nbsp;kWh (Midea's own figures). An independent ten-hour practical test measured roughly <strong>100&nbsp;W</strong> lower draw in iECO than in Auto mode, at a comfortable room temperature. Measurements taken for this project — two identical units, each behind its own power meter, ten days at an unchanged 23&nbsp;°C setpoint — found <strong>2 to 3.8&nbsp;kWh per day and unit</strong> of avoidable extra consumption when iECO was not active, with no comfort benefit from running without it. The cleaner of the two comparisons came out at 3.8&nbsp;kWh/day, roughly half the consumption with iECO.</p>
+    <p class="muted">That is an everyday measurement, not a lab test: the days with and without iECO are different calendar days, and outdoor temperature was not logged. What does support the comparison is that the overnight base load is practically identical on both — so the difference arises in the active cooling hours, not simply from hotter days.</p>
     <p class="muted">A note on those “eight hours”: that is a <em>consumption</em> figure (eight hours of runtime on 1.2&nbsp;kWh), not a timeout. It is often misread as iECO switching itself off after eight hours. Whether iECO additionally ends by itself after a long undisturbed run is <strong>unconfirmed</strong> — several PortaSplit owners report never seeing it, and any interaction (app, remote, changing the temperature) appears to reset such a timer. What is reproducible is the power-cycle behaviour described above, and that is what this tool addresses.</p>
 
     <div class="card">
