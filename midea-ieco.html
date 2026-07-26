@@ -193,7 +193,7 @@
     <p>Through the 2026 European heatwaves the Midea PortaSplit became one of the most sought-after home appliances of the season. If you managed to get one, it's worth running it as efficiently as it can go — and that means keeping iECO on.</p>
 
     <h2>The problem nobody tells you about</h2>
-    <p>iECO can currently be switched on <strong>only</strong> through the MSmartHome / Midea Smarthome app — there is no physical iECO button on the remote. And it doesn't stay on: iECO exits automatically after eight hours, and every time you power the unit off and on by hand — which most people do every day — it silently switches off again. You won't notice, because the unit otherwise works normally at the temperature you set.</p>
+    <p>iECO can currently be switched on <strong>only</strong> through the MSmartHome / Midea Smarthome app — there is no physical iECO button on the remote. And it doesn't stay on: every time you power the unit off and on <strong>outside the app</strong> — at the unit itself or with the remote, which most people do every day — iECO silently switches off again. You won't notice, because the unit otherwise works normally at the temperature you set. Power-cycling through the app preserves it, which is why not every owner runs into this.</p>
 
     <div class="card">
       <h3>ECO vs. iECO — two different modes, easily confused</h3>
@@ -207,7 +207,7 @@
             <tr><th scope="row">Activated via</th><td>Physical button on unit or remote</td><td>Only through the Midea app</td></tr>
             <tr><th scope="row">Target temperature</th><td>Fixed automatically at 24&nbsp;°C</td><td>Whatever setpoint you chose (e.g. 21&nbsp;°C)</td></tr>
             <tr><th scope="row">Mechanism</th><td>Simple fixed setpoint</td><td>Adaptive algorithm around your setpoint</td></tr>
-            <tr><th scope="row">Resets after off/on or 8&nbsp;h</th><td>—</td><td><strong>Yes</strong> — this is what this tool solves</td></tr>
+            <tr><th scope="row">Resets after off/on outside the app</th><td>—</td><td><strong>Yes</strong> — this is what this tool solves</td></tr>
           </tbody>
         </table>
       </div>
@@ -216,6 +216,7 @@
 
     <h2>What iECO is worth</h2>
     <p>Midea advertises iECO as saving up to <strong>60%</strong> versus standard operation, with up to eight hours of runtime on about 1.2&nbsp;kWh (Midea's own figures). An independent ten-hour practical test measured roughly <strong>100&nbsp;W</strong> lower draw in iECO than in Auto mode, at a comfortable room temperature. Measurements taken for this project found about <strong>4&nbsp;kWh per day</strong> of avoidable extra consumption during continuous operation when iECO was not active — with no comfort benefit from running without it.</p>
+    <p class="muted">A note on those “eight hours”: that is a <em>consumption</em> figure (eight hours of runtime on 1.2&nbsp;kWh), not a timeout. It is often misread as iECO switching itself off after eight hours. Whether iECO additionally ends by itself after a long undisturbed run is <strong>unconfirmed</strong> — several PortaSplit owners report never seeing it, and any interaction (app, remote, changing the temperature) appears to reset such a timer. What is reproducible is the power-cycle behaviour described above, and that is what this tool addresses.</p>
 
     <div class="card">
       <h3>The fix</h3>
